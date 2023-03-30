@@ -5,12 +5,11 @@ public class User {
     private String userName;
     private String email;
 
-    public User(){
+    private List<Wishlist> wishlists;
 
-    }
-    public User(int id, String userName, String email){
-        this.id = id;
-        this.userName = userName;
+    public User(int ID, String name, String password, String email) {
+        this.userName = name;
+        this.password = password;
         this.email = email;
     }
 

@@ -1,8 +1,13 @@
 package com.example.wishlist.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import com.example.wishlist.model.Wishlist;
+
 public class User {
     private int id;
     private String userName;
+    private String password;
     private String email;
 
     private List<Wishlist> wishlists;
@@ -11,6 +16,11 @@ public class User {
         this.userName = name;
         this.password = password;
         this.email = email;
+        wishlists = new ArrayList<Wishlist>();
+    }
+
+    public User() {
+
     }
 
     public int getId() {
@@ -29,6 +39,14 @@ public class User {
         this.userName = userName;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -36,4 +54,13 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Wishlist> getWishlists(){
+        return wishlists;
+    }
+
+    public void addWishlist(Wishlist wishlist) {
+        wishlists.add(wishlist);
+    }
+
 }

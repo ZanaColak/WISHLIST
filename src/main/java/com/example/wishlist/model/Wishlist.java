@@ -1,10 +1,14 @@
 package com.example.wishlist.model;
 
+import java.util.ArrayList;
+
 public class Wishlist {
 
     private int ID;
 
     private String name;
+
+    ArrayList<Item> items = new ArrayList<>();
 
     public Wishlist(int ID, String name) {
         this.ID = ID;
@@ -26,4 +30,13 @@ public class Wishlist {
     public void setName(String name) {
         this.name = name;
     }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
 }

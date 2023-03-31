@@ -85,7 +85,7 @@ h1 {
 }
 
 .login-box a:hover {
-    background: white;
+    background: darkblue;
     color: #fff;
     border-radius: 5px;
 }
@@ -186,6 +186,6 @@ h1 {
 
 .login-box a.a2:hover {
     background: transparent;
-    color: #fff;
+    color: darkblue;
     border-radius: 5px;
 }

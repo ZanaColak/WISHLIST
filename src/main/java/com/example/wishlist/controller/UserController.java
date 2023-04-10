@@ -26,10 +26,10 @@ public class UserController {
         return "index";
     }
 
-    @PostMapping("/user")
+    @GetMapping("/user/signup")
     public String submitForm(@ModelAttribute("user") User user){
         System.out.println(user);
-        return "register";
+        return "signup";
 
     }
 

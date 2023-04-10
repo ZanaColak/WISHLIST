@@ -24,6 +24,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "index";
     }
+
     @PostMapping("/user")
     public String submitForm(@ModelAttribute("user") User user){
         System.out.println(user);

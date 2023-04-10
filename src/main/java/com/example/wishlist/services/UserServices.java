@@ -23,4 +23,16 @@ public class UserServices {
         return dbRepository.fetchUser(userID);
     }
 
+    public void addUser(int ID, String name, String password, String email) {
+        dbRepository.addUser(ID, name, password, email);
+    }
+
+    public void editUser() {
+
+    }
+
+    public void deleteUser() {
+
+    }
+
 }

@@ -24,5 +24,17 @@ public class WishlistServices {
         return dbRepository.fetchWishlist(wishlistID);
     }
 
+    public void addWishlist() {
+
+    }
+
+    public void editWishlist() {
+
+    }
+
+    public void deleteWishlist() {
+
+    }
+
 
 }

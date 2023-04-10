@@ -48,6 +48,28 @@ public class DBRepository {
         return null;
     }
 
+    public void addUser(int ID, String name, String password, String email){
+        try(Connection con = DBManager.getConnection()) {
+            String SQL = "INSERT INTO user(userID, username, password, email) VALUES(?, ?, ?, ?)";
+            PreparedStatement pstmt = con.prepareStatement(SQL);
+            pstmt.setInt(1, ID);
+            pstmt.setString(2, name);
+            pstmt.setString(3, password);
+            pstmt.setString(4, email);
+            pstmt.execute();
+            users.add(new User(ID, name, password, email));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void editUser(int ID, String name, String password, String email) {
+
+    }
+
+    public void deleteUser(int ID, String username) {
+
+    }
 
     public List<Wishlist> getWishlists(int ID) {
         try(Connection con = DBManager.getConnection()) {

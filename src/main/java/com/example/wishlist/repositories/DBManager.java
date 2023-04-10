@@ -12,6 +12,9 @@ public class DBManager {
 
 
     public static Connection getConnection() {
+        if (con != null){
+            return con;
+        }
         try (InputStream input = new FileInputStream("src/main/resources/application.properties")) {
             Properties properties = new Properties();
             properties.load(input);

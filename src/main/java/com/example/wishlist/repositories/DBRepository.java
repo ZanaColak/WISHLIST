@@ -11,6 +11,7 @@ public class DBRepository {
 
     private final List<User> users = new ArrayList<>();
 
+
     public List<User> getUsers() {
         try (Connection con = DBManager.getConnection()) {
             String SQL = "SELECT * FROM wishlistDatabase.user;";
@@ -28,6 +29,7 @@ public class DBRepository {
         }
         return users;
     }
+
 
     public User fetchUser(int ID) {
         try(Connection con = DBManager.getConnection()) {
@@ -48,6 +50,7 @@ public class DBRepository {
         return null;
     }
 
+
     public void addUser(int ID, String name, String password, String email){
         try(Connection con = DBManager.getConnection()) {
             String SQL = "INSERT INTO user(userID, username, password, email) VALUES(?, ?, ?, ?)";
@@ -62,6 +65,7 @@ public class DBRepository {
             throw new RuntimeException(e);
         }
     }
+
 
     public void editUser(int ID, String name, String password, String email) {
         try(Connection con = DBManager.getConnection()) {
@@ -82,6 +86,7 @@ public class DBRepository {
         }
     }
 
+
     public void deleteUser(int userID) {
         try(Connection con = DBManager.getConnection()) {
             String SQL = "DELETE FROM user WHERE userID = ?";
@@ -92,6 +97,7 @@ public class DBRepository {
             throw new RuntimeException(e);
         }
     }
+
 
     public List<Wishlist> getWishlists(int ID) {
         try(Connection con = DBManager.getConnection()) {
@@ -110,6 +116,7 @@ public class DBRepository {
         }
         return fetchUser(ID).getWishlists();
     }
+
 
     public Wishlist fetchWishlist(int wishlistID) {
         try(Connection con = DBManager.getConnection()) {

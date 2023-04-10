@@ -49,23 +49,22 @@ public class DBRepository {
     }
 
 
-    public List<Wishlist> getWishlists() {
+    public List<Wishlist> getWishlists(int ID) {
         try(Connection con = DBManager.getConnection()) {
-            String SQL = "SELECT * FROM user JOIN wishlist WHERE user.userID = wishlistID;";
+            String SQL = "SELECT * FROM user JOIN wishlist WHERE user.userID = wishlistID";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(SQL);
             while (rs.next()) {
                 int wishlistID = rs.getInt("wishlistID");
                 String wishlistNamevar = rs.getString("wishlistName");
-                int userID = rs.getInt("userID");
+                //int userID = rs.getInt("userID");
                 Wishlist wishlist = new Wishlist(wishlistID, wishlistNamevar);
-                fetchUser(userID).addWishlist(wishlist);
-                return fetchUser(userID).getWishlists();
+                fetchUser(ID).addWishlist(wishlist);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return fetchUser(ID).getWishlists();
     }
 
     public Wishlist fetchWishlist(int wishlistID) {
@@ -86,24 +85,22 @@ public class DBRepository {
     }
 
 
-    public List<Item> getItemlist(String itemName, int ID) {
+    public List<Item> getItemlist(int ID) {
+        Wishlist wishlist = fetchWishlist(ID);
         try(Connection con = DBManager.getConnection()) {
-            Wishlist wishlist = fetchWishlist(ID);
-            String SQL = "SELECT * FROM wishlist JOIN item WHERE wishlistID = itemID AND itemName = ?;";
-            PreparedStatement pstmt = con.prepareStatement(SQL);
-            pstmt.setString(1, itemName);
-            ResultSet rs = pstmt.executeQuery();
+            String SQL = "SELECT * FROM wishlist JOIN item WHERE wishlistID = itemID;";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(SQL);
             while (rs.next()) {
                 int itemID = rs.getInt("ItemID");
                 String itemNamevar = rs.getString("ItemName");
                 Item item = new Item(itemID, itemNamevar);
                 wishlist.addItem(item);
-                return wishlist.getItems();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return wishlist.getItems();
     }
 
 }

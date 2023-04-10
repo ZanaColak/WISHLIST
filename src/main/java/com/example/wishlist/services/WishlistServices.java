@@ -16,8 +16,8 @@ public class WishlistServices {
         this.dbRepository = dbRepository;
     }
 
-    public List<Wishlist> getWishlists() {
-        return dbRepository.getWishlists();
+    public List<Wishlist> getWishlists(int ID) {
+        return dbRepository.getWishlists(ID);
     }
 
     public Wishlist fetchWishlist(int wishlistID) {

@@ -15,8 +15,8 @@ public class ItemServices {
         this.dbRepository = dbRepository;
     }
 
-    public List<Item> getItemlist(String itemName, int ID){
-        return dbRepository.getItemlist(itemName, ID);
+    public List<Item> getItemlist(int ID){
+        return dbRepository.getItemlist(ID);
     }
 
 }

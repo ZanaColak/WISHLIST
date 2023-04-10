@@ -18,6 +18,7 @@ public class UserController {
         this.dbRepository = dbRepository;
     }
 
+    //http://localhost:8080/user
     @GetMapping("/user")
     public String registration(Model model) {
         User user = new User();

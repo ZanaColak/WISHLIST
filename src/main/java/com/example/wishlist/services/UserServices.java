@@ -27,12 +27,12 @@ public class UserServices {
         dbRepository.addUser(ID, name, password, email);
     }
 
-    public void editUser() {
-
+    public void editUser(int ID, String name, String password, String email) {
+        dbRepository.editUser(ID, name, password, email);
     }
 
-    public void deleteUser() {
-
+    public void deleteUser(int userID) {
+        dbRepository.deleteUser(userID);
     }
 
 }

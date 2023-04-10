@@ -17,10 +17,10 @@ public class DBRepository {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(SQL);
             while (rs.next()) {
-                int ID = rs.getInt("UserID");
-                String username = rs.getString("Username");
-                String password = rs.getString("Password");
-                String email = rs.getString("Email");
+                int ID = rs.getInt("userID");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
                 users.add(new User(ID, username, password, email));
             }
         } catch (SQLException e) {
@@ -36,10 +36,10 @@ public class DBRepository {
             pstmt.setInt(1, ID);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                int userID = rs.getInt("UserID");
-                String usernamevar = rs.getString("Username");
-                String password = rs.getString("Password");
-                String email = rs.getString("Email");
+                int userID = rs.getInt("userID");
+                String usernamevar = rs.getString("username");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
                 return new User(userID, usernamevar, password, email);
             }
         } catch (SQLException e) {
@@ -64,11 +64,33 @@ public class DBRepository {
     }
 
     public void editUser(int ID, String name, String password, String email) {
+        try(Connection con = DBManager.getConnection()) {
+            String SQL = "UPDATE user SET username = ?, password = ?, email = ? WHERE userID = ?;";
+            PreparedStatement pstmt = con.prepareStatement(SQL);
+            pstmt.setInt(1, ID);
+            pstmt.setString(2, name);
+            pstmt.setString(3, password);
+            pstmt.setString(4, email);
+            pstmt.executeUpdate();
 
+            User userEdit = fetchUser(ID);
+            userEdit.setUserName(name);
+            userEdit.setEmail(email);
+            userEdit.setPassword(password);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void deleteUser(int ID, String username) {
-
+    public void deleteUser(int userID) {
+        try(Connection con = DBManager.getConnection()) {
+            String SQL = "DELETE FROM user WHERE userID = ?";
+            PreparedStatement pstmt = con.prepareStatement(SQL);
+            pstmt.setInt(1, userID);
+            pstmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<Wishlist> getWishlists(int ID) {
@@ -114,8 +136,8 @@ public class DBRepository {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(SQL);
             while (rs.next()) {
-                int itemID = rs.getInt("ItemID");
-                String itemNamevar = rs.getString("ItemName");
+                int itemID = rs.getInt("itemID");
+                String itemNamevar = rs.getString("itemName");
                 Item item = new Item(itemID, itemNamevar);
                 wishlist.addItem(item);
             }

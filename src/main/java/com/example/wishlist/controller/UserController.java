@@ -16,6 +16,10 @@ public class UserController {
     public UserController(DBRepository dbRepository) {
         this.dbRepository = dbRepository;
     }
+    @GetMapping("")
+    public String showWebsite(){
+        return "site";
+    }
 
     //Ikke færdig
     @PostMapping ("/login")
@@ -25,12 +29,11 @@ public class UserController {
             if (user.getPassword().equals(pwd)){
                 httpSession.setAttribute("user", user);
                 httpSession.setMaxInactiveInterval(60);
-                return "user1";
+                return "index";
             }
         }
         return "error";
     }
-
 
     //http://localhost:8080/user
     @GetMapping("/user")

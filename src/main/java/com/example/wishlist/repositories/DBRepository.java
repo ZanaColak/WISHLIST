@@ -11,12 +11,13 @@ public class DBRepository {
 
     private final List<User> users = new ArrayList<>();
 
-
     public List<User> getUsers() {
         try (Connection con = DBManager.getConnection()) {
             String SQL = "SELECT * FROM wishlistDatabase.user;";
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(SQL);
+            //Statement stmt = con.createStatement();
+            //ResultSet rs = stmt.executeQuery(SQL);
+            PreparedStatement pstmt = con.prepareStatement(SQL);
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int ID = rs.getInt("userID");
                 String username = rs.getString("username");
@@ -60,7 +61,6 @@ public class DBRepository {
             pstmt.setString(3, password);
             pstmt.setString(4, email);
             pstmt.execute();
-            users.add(new User(ID, name, password, email));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -92,7 +92,7 @@ public class DBRepository {
             String SQL = "DELETE FROM user WHERE userID = ?";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             pstmt.setInt(1, userID);
-            pstmt.execute();
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -102,8 +102,8 @@ public class DBRepository {
     public List<Wishlist> getWishlists(int ID) {
         try(Connection con = DBManager.getConnection()) {
             String SQL = "SELECT * FROM user JOIN wishlist WHERE user.userID = wishlistID";
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(SQL);
+            PreparedStatement pstmt = con.prepareStatement(SQL);
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int wishlistID = rs.getInt("wishlistID");
                 String wishlistNamevar = rs.getString("wishlistName");
@@ -140,8 +140,8 @@ public class DBRepository {
         Wishlist wishlist = fetchWishlist(ID);
         try(Connection con = DBManager.getConnection()) {
             String SQL = "SELECT * FROM wishlist JOIN item WHERE wishlistID = itemID;";
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(SQL);
+            PreparedStatement pstmt = con.prepareStatement(SQL);
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int itemID = rs.getInt("itemID");
                 String itemNamevar = rs.getString("itemName");

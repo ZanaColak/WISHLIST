@@ -4,6 +4,8 @@ import java.util.List;
 import com.example.wishlist.model.*;
 
 public interface IRepository {
-    List<User> getAll();
-
+    void add();
+    public <T> List<T> getAll();
+    void update();
+    void delete();
 }

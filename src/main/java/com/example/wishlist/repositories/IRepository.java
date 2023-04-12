@@ -1,11 +1,11 @@
 package com.example.wishlist.repositories;
 
 import java.util.List;
-import com.example.wishlist.model.*;
 
-public interface IRepository {
-    void add();
-    public <T> List<T> getAll();
-    void update();
-    void delete();
+public interface IRepository<T> {
+    void addEntity(T obj);
+    List<T> getEntities();
+    T fetchEntity(int ID);
+    void updateEntity(int ID, String name);
+    void deleteEntity(int ID, String name);
 }

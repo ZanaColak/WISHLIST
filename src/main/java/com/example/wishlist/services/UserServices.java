@@ -1,7 +1,7 @@
 package com.example.wishlist.services;
 
 import com.example.wishlist.model.User;
-import com.example.wishlist.repositories.DBRepository;
+import com.example.wishlist.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,30 +9,30 @@ import java.util.List;
 @Service
 public class UserServices {
 
-    DBRepository dbRepository;
+    UserRepository userRepository;
 
-    public UserServices(DBRepository dbRepository){
-        this.dbRepository = dbRepository;
+    public UserServices(UserRepository userRepository){
+        this.userRepository = userRepository;
     }
 
     public List<User> getUsers() {
-        return dbRepository.getUsers();
+        return userRepository.getUsers();
     }
 
     public User fetchUser(int userID) {
-        return dbRepository.fetchUser(userID);
+        return userRepository.fetchUser(userID);
     }
 
     public void addUser(int ID, String name, String password, String email) {
-        dbRepository.addUser(ID, name, password, email);
+        userRepository.addUser(ID, name, password, email);
     }
 
     public void editUser(int ID, String name, String password, String email) {
-        dbRepository.editUser(ID, name, password, email);
+        userRepository.editUser(ID, name, password, email);
     }
 
     public void deleteUser(int userID) {
-        dbRepository.deleteUser(userID);
+        userRepository.deleteUser(userID);
     }
 
 }

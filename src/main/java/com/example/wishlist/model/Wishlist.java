@@ -8,6 +8,8 @@ public class Wishlist {
 
     private String name;
 
+    private int userID;
+
     ArrayList<Item> items = new ArrayList<>();
 
     public Wishlist(int ID, String name) {
@@ -33,6 +35,14 @@ public class Wishlist {
 
     public ArrayList<Item> getItems() {
         return items;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public void addItem(Item item) {

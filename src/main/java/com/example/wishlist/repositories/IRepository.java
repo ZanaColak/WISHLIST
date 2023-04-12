@@ -6,6 +6,6 @@ public interface IRepository<T> {
     void addEntity(T obj);
     List<T> getEntities();
     T fetchEntity(int ID);
-    void updateEntity(int ID, String name);
-    void deleteEntity(int ID, String name);
+    void updateEntity(T obj);
+    void deleteEntity(int ID);
 }

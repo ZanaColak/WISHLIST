@@ -9,9 +9,9 @@ import com.example.wishlist.model.*;
 @Repository
 public class UserRepository {
 
-    private final List<User> users = new ArrayList<>();
 
     public List<User> getUsers() {
+        List<User> users = new ArrayList<>();
         try (Connection con = DBManager.getConnection()) {
             String SQL = "SELECT * FROM wishlistDatabase.user;";
             //Statement stmt = con.createStatement();

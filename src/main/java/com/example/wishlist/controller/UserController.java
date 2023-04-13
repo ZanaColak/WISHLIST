@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping
 public class UserController {
     UserServices userServices;
+    User user = new User();
 
     public UserController(UserServices userServices) {
         this.userServices = userServices;
@@ -37,7 +38,6 @@ public class UserController {
 
     @GetMapping("/user")
     public String registration(Model model) {
-        User user = new User();
         model.addAttribute("user", user);
         return "index";
     }
@@ -50,6 +50,18 @@ public class UserController {
     @GetMapping("/user/signup")
     public String submitForm(@ModelAttribute("user") User user){
         System.out.println(user);
+        return "signup";
+    }
+    @GetMapping("/user/edit/{id}")
+    public String editUser(@PathVariable("id") Integer id, Model model){
+        //Find bruger ved at indtaste brugerens id (not done yet)
+        model.addAttribute("user", user);
+        return "signup";
+    }
+    @GetMapping("/user/delete/{id}")
+    public String deleteUser(@PathVariable("id") Integer id, Model model){
+        //Delete user ved at indtaste brugerens id (not done yet)
+        model.addAttribute("user", user);
         return "signup";
     }
 }

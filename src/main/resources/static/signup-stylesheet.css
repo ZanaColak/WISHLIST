@@ -1,17 +1,12 @@
-body {
+body  {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     -moz-osx-font-smoothing: grayscale;
-}
+    background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjn1ICREecXXqMUbnEPTMBfh0VNl8LQbtePwJGVxEb9wPtKILeaxX-kXLygXAxPOeT3f9XFqk7yXVlvz6z8Emppsfwsb1eIo3Ghe-I8xN327JzdzZBCojb2ymfmhzhS-m5INyaMTBTRXL1FBdUO2HKCuMgIYiOTDxljGvimAZAyrJ6OdeGIWn4OSZc5NQ/s1920/27042022-WHITE-BACKGROUND.png");
 
-html, body {
-    height: 100%;
-    background-color: royalblue;
-    overflow: hidden;
 }
-
 
 .form-holder {
     display: flex;
@@ -38,7 +33,7 @@ html, body {
 }
 
 .form-content .form-items {
-    border: 3px solid #fff;
+    border: 3px solid black;
     padding: 40px;
     display: inline-block;
     width: 100%;
@@ -52,7 +47,7 @@ html, body {
 }
 
 .form-content h3 {
-    color: #fff;
+    color: black;
     text-align: left;
     font-size: 28px;
     font-weight: 600;
@@ -64,7 +59,7 @@ html, body {
 }
 
 .form-content p {
-    color: #fff;
+    color: black;
     text-align: left;
     font-size: 17px;
     font-weight: 300;
@@ -74,7 +69,7 @@ html, body {
 
 
 .form-content label, .was-validated .form-check-input:invalid~.form-check-label, .was-validated .form-check-input:valid~.form-check-label{
-    color: #fff;
+    color: black;
 }
 
 .form-content input[type=text], .form-content input[type=password], .form-content input[type=email], .form-content select {
@@ -84,10 +79,10 @@ html, body {
     border: 0;
     outline: 0;
     border-radius: 6px;
-    background-color: #fff;
+    background-color: whitesmoke;
     font-size: 15px;
     font-weight: 300;
-    color: #8D8D8D;
+    color: royalblue;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     margin-top: 16px;
@@ -95,7 +90,7 @@ html, body {
 
 
 .btn-primary{
-    background-color: #6C757D;
+    background-color: royalblue;
     outline: none;
     border: 0px;
     box-shadow: none;
@@ -114,11 +109,11 @@ html, body {
     padding: 8px 20px;
     border-radius: 6px;
     text-align: left;
-    background-color: #fff;
+    background-color: royalblue;
     border: 0;
     font-size: 15px;
     font-weight: 300;
-    color: #8D8D8D;
+    color: royalblue;
     outline: none;
     resize: none;
     height: 120px;
@@ -129,7 +124,7 @@ html, body {
 
 .form-content textarea:hover, .form-content textarea:focus {
     border: 0;
-    background-color: #ebeff8;
+    background-color: royalblue;
     color: #8D8D8D;
 }
 
@@ -150,5 +145,5 @@ h1 {
     text-align: center;
     font-family: "Times New Roman";
     font-weight: bold;
-    color: white;
+    color: royalblue;
 }

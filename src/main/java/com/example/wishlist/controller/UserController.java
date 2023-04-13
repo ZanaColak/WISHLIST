@@ -1,6 +1,5 @@
 package com.example.wishlist.controller;
 
-import com.example.wishlist.model.Item;
 import com.example.wishlist.model.User;
 import com.example.wishlist.services.UserServices;
 import jakarta.servlet.http.HttpSession;
@@ -8,16 +7,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping
 public class UserController {
-
     UserServices userServices;
 
     public UserController(UserServices userServices) {
         this.userServices = userServices;
     }
-
+    @GetMapping
+    public String showWebsite(){
+        return "index2";
+    }
     //Ikke færdig
     @PostMapping ("/login")
     public String login(@RequestParam int uid, @RequestParam String pwd, HttpSession httpSession, Model model){
@@ -26,32 +29,27 @@ public class UserController {
             if (user.getPassword().equals(pwd)){
                 httpSession.setAttribute("user", user);
                 httpSession.setMaxInactiveInterval(60);
-                return "profile";
+                return "index";
             }
         }
-        return "loginfail";
+        return "error";
     }
 
-
-    //http://localhost:8080/user
     @GetMapping("/user")
     public String registration(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "index";
     }
-
+    @GetMapping("/user/save")
+    public String saveUser(Model model){
+        List<User> userList = userServices.getUsers();
+        model.addAttribute("userList", userList);
+        return "users";
+    }
     @GetMapping("/user/signup")
     public String submitForm(@ModelAttribute("user") User user){
         System.out.println(user);
         return "signup";
     }
-
-    @GetMapping("/user/product")
-    public String submitProduct(Model model){
-        Item item = new Item();
-        model.addAttribute("item", item);
-        return "product_form";
-    }
-
 }

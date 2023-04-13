@@ -26,10 +26,10 @@ public class UserController {
             if (user.getPassword().equals(pwd)){
                 httpSession.setAttribute("user", user);
                 httpSession.setMaxInactiveInterval(60);
-                return "user1";
+                return "profile";
             }
         }
-        return "error";
+        return "loginfail";
     }
 
 

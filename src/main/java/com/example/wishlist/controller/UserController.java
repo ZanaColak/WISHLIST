@@ -25,17 +25,17 @@ public class UserController {
     }
 
     //Ikke færdig
-    @PostMapping("/login")
+    @PostMapping("/user")
     public String login(@RequestParam int uid, @RequestParam String pwd, HttpSession httpSession, Model model) {
         User user = userServices.fetchUser(uid);
         if (user != null) {
             if (user.getPassword().equals(pwd)) {
                 httpSession.setAttribute("user", user);
                 httpSession.setMaxInactiveInterval(60);
-                return "index";
+                return "redirect:/item_form";
             }
         }
-        return "error";
+        return "index";
     }
 
     @GetMapping("/user")
@@ -53,7 +53,7 @@ public class UserController {
 
     @GetMapping("/user/signup")
     public String submitForm(@ModelAttribute("user") User user) {
-        System.out.println(user);
+        System.out.println(user); //not done yet
         return "signup";
     }
 }

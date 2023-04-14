@@ -22,13 +22,14 @@ public class WishlistController {
         return "item_form";
     }
 
+
     /*@PostMapping("user/product/save") Virker ikke/ i tvivl om det skal være en item den gemmer eller en wishlist
     public String saveProduct(Wishlist wishlist){
         wishlistServices.addWishlist(wishlist);
         return "redirect:/product_form";
     }
 */
-    @GetMapping("")//Find by id (Not done yet)
+    /*@GetMapping("")//Find by id (Not done yet)
     public String editWishlist(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("wishlist", wishlist);
         return "item_form";
@@ -40,4 +41,6 @@ public class WishlistController {
         model.addAttribute("wishlist", wishlist);
         return "item_form";
     }
+    *
+     */
 }

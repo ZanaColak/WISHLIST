@@ -18,16 +18,18 @@ public class UserController {
     public UserController(UserServices userServices) {
         this.userServices = userServices;
     }
+
     @GetMapping
-    public String showWebsite(){
+    public String showWebsite() {
         return "index2";
     }
+
     //Ikke færdig
-    @PostMapping ("/login")
-    public String login(@RequestParam int uid, @RequestParam String pwd, HttpSession httpSession, Model model){
+    @PostMapping("/login")
+    public String login(@RequestParam int uid, @RequestParam String pwd, HttpSession httpSession, Model model) {
         User user = userServices.fetchUser(uid);
-        if (user != null){
-            if (user.getPassword().equals(pwd)){
+        if (user != null) {
+            if (user.getPassword().equals(pwd)) {
                 httpSession.setAttribute("user", user);
                 httpSession.setMaxInactiveInterval(60);
                 return "index";
@@ -41,18 +43,21 @@ public class UserController {
         model.addAttribute("user", user);
         return "index";
     }
+
     @GetMapping("/user/save")
-    public String saveUser(Model model){
+    public String saveUser(Model model) {
         List<User> userList = userServices.getUsers();
         model.addAttribute("userList", userList);
         return "users";
     }
+
     @GetMapping("/user/signup")
-    public String submitForm(@ModelAttribute("user") User user){
+    public String submitForm(@ModelAttribute("user") User user) {
         System.out.println(user);
         return "signup";
     }
-    @GetMapping("/user/edit/{id}")
+}
+ /*   @GetMapping("/user/edit/{id}")
     public String editUser(@PathVariable("id") Integer id, Model model){
         //Find bruger ved at indtaste brugerens id (not done yet)
         model.addAttribute("user", user);
@@ -65,3 +70,5 @@ public class UserController {
         return "signup";
     }
 }
+
+  */

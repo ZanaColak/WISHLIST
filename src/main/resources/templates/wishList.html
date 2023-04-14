@@ -1,32 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
     <title>Wishlist</title>
 </head>
 <body>
 <div class="list-group">
     <div class="container text-center">
         <div><h1>Your wishlist</h1></div>
-<div>
-    <table class = "table table-bordered">
-        <thead class="thead-dark">
-        <tr>
-            <th>1. Item</th>
-            <th>2. Item</th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each = "wishlist : ${wishhList}">
-            <tr>
-                <td>[[${wishlist.name}]]</td>
-                <td>[[wishlist.name}]]</td>
-            </tr>
-        </th:block>
-        </tbody>
-    </table>
+        <div>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Item name</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                    <th>Save</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="wishlist : ${wishList}">
+                    <tr>
+                        <td>[[${wishlist.name}]]</td>
+                        <td>
+                            <form th:action="@{/wishlist/delete/{id}(id=${wishlist.id})}" method="post">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-warning"
+                                    th:onclick="'window.location.href = \'' + @{/wishlist/update/{id}(id=${wishlist.id})} + '\';'">
+                                Update
+                            </button>
+                        </td>
+                        <td>
+                            <form th:action="@{/wishlist/save/{id}(id=${wishlist.id})}" method="post">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>

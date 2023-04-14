@@ -13,7 +13,10 @@
     <p>Password: <input type="text" th:field="*{password}"/></p>
     <p>
         <input type="submit" value="Submit" />
-        <input type="submit" value="Don't have an account?" onclick="location.href='/user/signup';">
+       <button> <a href="#" th:href="@{/user/signup}">Dont have account?</a> </button>
+
+
+
     </p>
 
 

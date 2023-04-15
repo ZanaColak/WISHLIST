@@ -26,3 +26,8 @@ CREATE TABLE item (
     FOREIGN KEY (wishlistID) REFERENCES wishlist(wishlistID)
 );
 
+-- Tilføj testdata
+INSERT INTO user (username, password, email) VALUES
+('Batman', 'Batmanrocks', 'Bat@Man.com')
+
+

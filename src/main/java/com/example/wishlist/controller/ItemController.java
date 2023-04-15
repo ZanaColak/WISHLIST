@@ -13,19 +13,19 @@ import com.example.wishlist.services.ItemServices;
 public class ItemController {
 
     ItemServices itemServices;
-    Item item;
+    Item item = new Item();
 
     public ItemController(ItemServices itemServices) {
         this.itemServices = itemServices;
     }
-    @GetMapping("")
+    @GetMapping("/user/item/delete")
     public String deleteItem(@PathVariable("id") Integer id, Model model) {
         //Delete wish ved at indtaste brugerens id (not done yet)
         model.addAttribute("wishlist", item);
         return "item_form";
     }
-     @GetMapping("")//Find by id (Not done yet)
-    public String editItem(@PathVariable("id") Integer id, Model model) {
+     @GetMapping("/user/item/update")//Find by id (Not done yet)
+    public String updateItem(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("wishlist", item);
         return "item_form";
     }

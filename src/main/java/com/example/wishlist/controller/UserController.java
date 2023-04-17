@@ -31,7 +31,7 @@ public class UserController {
         System.out.println(user.getPassword());
         System.out.println(user.getId());
 
-        //userServices.addUser(user.getId(), user.getUserName(), user.getPassword(), user.getEmail());
+        //userServices.addUser(user);
         return "signup";
     }
 
@@ -58,11 +58,11 @@ public class UserController {
         return "redirect:/login_fail";
     }
 
-    @GetMapping("/user/save")
-    public String saveUser(Model model) {
+    @GetMapping("/users")
+    public String showUsers(Model model) {
         List<User> userList = userServices.getUsers();
         model.addAttribute("userList", userList);
-        return "users";
+        return "redirect:/users";
     }
 }
 

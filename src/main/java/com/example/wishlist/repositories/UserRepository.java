@@ -52,7 +52,7 @@ public class UserRepository {
     }
 
 
-    public void addUser(int ID, String name, String password, String email){
+/*    public void addUser(int ID, String name, String password, String email){
         try(Connection con = DBManager.getConnection()) {
             String SQL = "INSERT INTO user(userID, username, password, email) VALUES(?, ?, ?, ?)";
             PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -60,6 +60,20 @@ public class UserRepository {
             pstmt.setString(2, name);
             pstmt.setString(3, password);
             pstmt.setString(4, email);
+            pstmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }*/
+
+    public void addUser(User user){
+        try(Connection con = DBManager.getConnection()) {
+            String SQL = "INSERT INTO user(userID, username, password, email) VALUES(?, ?, ?, ?)";
+            PreparedStatement pstmt = con.prepareStatement(SQL);
+            pstmt.setInt(1, user.getId());
+            pstmt.setString(2, user.getUserName());
+            pstmt.setString(3, user.getPassword());
+            pstmt.setString(4, user.getEmail());
             pstmt.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);

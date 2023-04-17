@@ -23,8 +23,12 @@ public class UserServices {
         return userRepository.fetchUser(userID);
     }
 
-    public void addUser(int ID, String name, String password, String email) {
+/*    public void addUser(int ID, String name, String password, String email) {
         userRepository.addUser(ID, name, password, email);
+    }*/
+
+    public void addUser(User user) {
+        userRepository.addUser(user);
     }
 
     public void editUser(int ID, String name, String password, String email) {

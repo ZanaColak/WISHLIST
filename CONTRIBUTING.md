@@ -11,6 +11,13 @@ The application uses MySQL as a backend database in order to insert new informat
 We've used JDBC in order to handle this data so naturally we also made use of Springboot.
 Because of this we use Thymeleaf as API to display data on HTML pages together with Bootstrap as Front-end framework.
 
+## Relations of the entities
+
+<img
+width="782"
+alt="image"
+src="https://github.com/ZanaColak/WISHLIST/blob/master/ER%20DIAGRAM.png">
+
 ## Difficulties
 
 Unfortunately in its current state the application is lacking functionality such as correctly adding a user,

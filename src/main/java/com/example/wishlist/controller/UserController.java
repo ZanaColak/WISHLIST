@@ -31,7 +31,7 @@ public class UserController {
     @PostMapping("/signup")
     public String submitSignupForm(@ModelAttribute("user") User user) {
         userServices.createUser(user);
-        return "redirect:/user/login";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")

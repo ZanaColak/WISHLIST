@@ -19,7 +19,7 @@
                 <div class="form-items">
                     <h3>Register Today</h3>
                     <p>Fill in the data below.</p>
-                    <form class="requires-validation" novalidate action="#" th:action="@{/user}" th:object="${user}" method="get">
+                    <form class="requires-validation" novalidate action="#" th:action="@{/login}" th:object="${user}" method="get">
 
                         <div class="col-md-12">
                                 <input class="form-control" type="text" th:field="*{userName}" placeholder="Full Name" required>

@@ -24,18 +24,13 @@ public class UserController {
     }
 
 
-    @GetMapping("/user/signup")
+    @GetMapping("/signup")
     public String submitForm(@ModelAttribute("user") User user) {
-        System.out.println(user.getEmail()); //not done yet
-        System.out.println(user.getUserName());
-        System.out.println(user.getPassword());
-        System.out.println(user.getId());
-
         //userServices.createUser(user);
         return "signup";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/login")
     public String registration(Model model) {
         model.addAttribute("user", new User());
         System.out.println(model);
@@ -44,25 +39,33 @@ public class UserController {
     }
 
     //Ikke færdig
-    @PostMapping("/user")
-    public String login(@RequestParam int uid, @RequestParam String email, @RequestParam String pwd, HttpSession httpSession, Model model) {
-        User user = userServices.fetchUser(uid);
+    @PostMapping("/login")
+    public String login(@RequestParam("userID") int userID, @RequestParam("email") String email, @RequestParam("password") String pwd, HttpSession httpSession, Model model) {
+        User user = userServices.fetchUser(userID);
         if (user != null) {
             if (user.getEmail().equals(email) && user.getPassword().equals(pwd)) {
                 model.addAttribute("user", user);
                 httpSession.setAttribute("user", user);
                 httpSession.setMaxInactiveInterval(60);
-                return "redirect:/item_form";
+                return "item_form";
             }
         }
-        return "redirect:/login_fail";
+        model.addAttribute("wrongCredentials", true);
+        return "login_fail";
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "homepage";
+    }
+
 
     @GetMapping("/users")
     public String showUsers(Model model) {
         List<User> userList = userServices.getUsers();
         model.addAttribute("userList", userList);
-        return "redirect:/users";
+        return "users";
     }
 }
 

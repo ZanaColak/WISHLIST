@@ -29,18 +29,17 @@ public class WishlistController {
         return "redirect:/wishList";
     }
 
-    @GetMapping("")//Find by id (Not done yet)
+    @GetMapping("/wishlist")//Find by id (Not done yet)
     public String updateWishlist(@ModelAttribute("user") Wishlist wishlist, String name) {
         wishlistServices.updateWishlist(wishlist, name);
         return "item_form";
     }
 
-    /*@GetMapping("")
-    public String deleteWish(@PathVariable("id") Integer id, Model model) {
+    @GetMapping("/wishlist/{id}")
+    public String deleteWish(@PathVariable("id") Integer ID, Model model) {
         //Delete wish ved at indtaste brugerens id (not done yet)
         model.addAttribute("wishlist", wishlist);
         return "item_form";
     }
-    *
-     */
+
 }

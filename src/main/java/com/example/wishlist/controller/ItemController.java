@@ -25,17 +25,18 @@ public class ItemController {
         itemServices.addItem(item);
         return "item_form";
     }
-    @GetMapping("list")
+    @GetMapping("user/wishlist/item")
     public String productList(Item item){
         itemServices.getItemList(item.getWishlistID());
         return "redirect:/wishList";
     }
-    @GetMapping("/user/item/delete")
+    @GetMapping("/user/wishlist/item/delete/{id}")
     public String deleteItem(@PathVariable("id") Integer id, Model model) {
         //Delete wish ved at indtaste brugerens id (not done yet)
         model.addAttribute("wishlist", item);
         return "wishList";
     }
+
 /*     @GetMapping("/user/item/update")//Find by id (Not done yet)
     public String updateItem(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("wishlist", item);

@@ -12,8 +12,8 @@ public class User {
 
     private List<Wishlist> wishlists;
 
-    public User(int ID, String name, String password, String email) {
-        this.userName = name;
+    public User(int ID, String userName, String password, String email) {
+        this.userName = userName;
         this.password = password;
         this.email = email;
         wishlists = new ArrayList<Wishlist>();
@@ -61,6 +61,17 @@ public class User {
 
     public void addWishlist(Wishlist wishlist) {
         wishlists.add(wishlist);
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid='" + id + '\'' +
+                ", username='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 
 }

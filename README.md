@@ -10,8 +10,8 @@ You can also enter a URL (like from Google) under an item to indicate what the i
 The tools we used for this project:
 - Mysql 
 - Dependencies in Spring Boot: Spring Web, Thymeleaf and Mysql Connector.
-
-The Application is deployed to a Docker Container
+- Docker Container
+- Bootstrap for design
 
 
 

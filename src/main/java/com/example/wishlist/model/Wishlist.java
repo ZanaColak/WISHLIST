@@ -21,6 +21,9 @@ public class Wishlist {
 
     }
 
+    public Wishlist(int wishlistId) {
+    }
+
     public int getID() {
         return ID;
     }

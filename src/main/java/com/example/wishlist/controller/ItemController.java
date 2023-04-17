@@ -12,42 +12,47 @@ import java.util.List;
 @RequestMapping
 public class ItemController {
 
-    ItemServices itemServices;
-    Item item = new Item();
+    private final ItemServices itemServices;
 
     public ItemController(ItemServices itemServices) {
         this.itemServices = itemServices;
     }
+
     @PostMapping("user/product/save")
     public String saveProduct(@ModelAttribute Item item, Model model) {
         itemServices.addItem(item);
         List<Item> itemList = itemServices.getItemList(item.getID());
-            model.addAttribute("item", itemList);
-            return "item_form";
-        }
+        model.addAttribute("item", itemList);
+        return "item_form";
+    }
 
     @GetMapping("user/wishlist/item")
-    public String productList(Item item){
-        itemServices.getItemList(item.getWishlistID());
-        return "redirect:/wishList";
-    }
-    @GetMapping("/user/wishlist/item/delete/{id}")
-    public String deleteItem(@PathVariable("id") Integer id, Model model) {
-        //Delete wish ved at indtaste brugerens id (not done yet)
-        model.addAttribute("wishlist", item);
+    public String productList(Model model, @RequestParam("wishlistId") Long wishlistId) {
+        List<Item> itemList = itemServices.getItemList(Math.toIntExact(wishlistId));
+        model.addAttribute("itemList", itemList);
+        model.addAttribute("wishlistId", wishlistId);
         return "wishList";
     }
 
-
-    @GetMapping("/user/item/update")//Find by id (Not done yet)
-    public String updateItem(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("wishlist", item);
-        return "wishList";
+    @GetMapping("/user/item/{id}/update")
+    public String updateItem(@PathVariable("id") int itemId, Model model) {
+        Item item = (Item) itemServices.getItemList(itemId);
+        model.addAttribute("item", item);
+        return "item_form";
     }
+
+    @PostMapping("/user/item/{id}/update")
+    public String updateItem(@PathVariable("id") int itemId, @ModelAttribute Item item, Model model) {
+        itemServices.updateItem(itemId, item.getName(), item.getWishlistID());
+        return "redirect:/user/wishlist/item?wishlistId=" + item.getWishlistID();
+    }
+
+    @GetMapping("/user/item/{id}/delete")
+    public String deleteItem(@PathVariable("id") int itemId, Model model) {
+        Item item = (Item) itemServices.getItemList(itemId);
+        int wishlistId = item.getWishlistID();
+        itemServices.deleteItem(itemId);
+        return "redirect:/user/wishlist/item?wishlistId=" + wishlistId;
+    }
+
 }
-/*     @GetMapping("/user/item/update")//Find by id (Not done yet)
-    public String updateItem(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("wishlist", item);
-        return "wishList";
-    }*/
-

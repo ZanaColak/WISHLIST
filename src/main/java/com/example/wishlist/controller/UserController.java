@@ -22,12 +22,16 @@ public class UserController {
     public String showHomepage() {
         return "homepage";
     }
-
-
     @GetMapping("/signup")
-    public String submitForm(@ModelAttribute("user") User user) {
-        userServices.createUser(user);
+    public String showSignupForm(Model model) {
+        model.addAttribute("user", new User());
         return "signup";
+    }
+
+    @PostMapping("/signup")
+    public String submitSignupForm(@ModelAttribute("user") User user) {
+        userServices.createUser(user);
+        return "redirect:/user/login";
     }
 
     @GetMapping("/login")
@@ -55,7 +59,7 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "homepage";
     }

@@ -64,19 +64,5 @@ public class UserController {
         model.addAttribute("userList", userList);
         return "users";
     }
-
-
-/*    @GetMapping("/user/edit/{id}")
-    public String editUser(@PathVariable("id") Integer id, Model model){
-        //Find bruger ved at indtaste brugerens id (not done yet)
-        model.addAttribute("user", user);
-        return "signup";
-    }
-    @GetMapping("/user/delete/{id}")
-    public String deleteUser(@PathVariable("id") Integer id, Model model){
-        //Delete user ved at indtaste brugerens id (not done yet)
-        model.addAttribute("user", user);
-        return "signup";
-    }*/
 }
 

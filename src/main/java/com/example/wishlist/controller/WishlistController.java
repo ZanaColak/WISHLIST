@@ -26,11 +26,11 @@ public class WishlistController {
     }
 
 
-    @PostMapping("user/product/save") //Virker ikke/ i tvivl om det skal være en item den gemmer eller en wishlist
-    public String saveProduct(Wishlist wishlist){
-        wishlistServices.addWishlist(wishlist.getID(), wishlist.getName(), wishlist.getUserID());
-        return "redirect:/wishList";
-    }
+   // @PostMapping("user/product/save") //Virker ikke/ i tvivl om det skal være en item den gemmer eller en wishlist
+   // public String saveProduct(Wishlist wishlist){
+       // wishlistServices.addWishlist(wishlist.getID(), wishlist.getName(), wishlist.getUserID());
+        //return "redirect:/wishList";
+    //}
 
     /*@GetMapping("")//Find by id (Not done yet)
     public String editWishlist(@PathVariable("id") Integer id, Model model) {

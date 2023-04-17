@@ -10,6 +10,8 @@ It is purposely designed to be a generic wishlist, so it can be used for any typ
 The application uses MySQL as a backend database in order to insert new information to save it for later.
 We've used JDBC in order to handle this data so naturally we also made use of Springboot.
 Because of this we use Thymeleaf as API to display data on HTML pages together with Bootstrap as Front-end framework.
+Moreover, we also run the application on Docker in order to appeal to usability since running the program on 
+localhost is a bit cumbersome. 
 
 ## Relations of the entities
 
@@ -17,6 +19,13 @@ Because of this we use Thymeleaf as API to display data on HTML pages together w
 width="782"
 alt="image"
 src="https://github.com/ZanaColak/WISHLIST/blob/master/ER%20DIAGRAM.png">
+
+## UML Class Diagram
+
+<img
+width="782"
+alt="image"
+src="https://github.com/ZanaColak/WISHLIST/blob/master/klasse%20diagram.png">
 
 ## Difficulties
 

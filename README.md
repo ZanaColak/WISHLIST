@@ -13,8 +13,5 @@ The tools we used for this project:
 - Docker Container
 - Bootstrap for design
 
-
-
-
-
+The Documentation for this project: ER Diagaram, Class Diagram and a UML Diagram
 

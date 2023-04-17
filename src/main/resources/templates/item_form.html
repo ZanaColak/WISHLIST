@@ -9,7 +9,7 @@
 <body>
 <div class = "container text-center">
   <div><h1>Create Your Wishlist</h1></div>
-  <form th:action="@{user/product/save}" th:object="${item}" method="post"> // SKAL DET VÆRE ITEM/WISHLIST
+  <form th:action="@{user/product/save}" th:object="${item}" method="post">
 
     <div class="form-group1">
       <label for="formGroupExampleInput">Wish 1</label>
@@ -30,8 +30,9 @@
       <label for="formGroupExampleInput2">URL For Wish 2</label>
       <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="Enter a URL Link">
     </div>
-    <button> <a href="#" th:href="@{user/product/save}">Submit</a> </button>
+
+    <button type="submit" class="btn btn-primary" formaction="wishList.html">Submit</button>
+  </form>
 </div>
-</form>
 </body>
 </html>

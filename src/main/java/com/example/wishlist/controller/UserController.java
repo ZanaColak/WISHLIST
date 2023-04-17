@@ -26,7 +26,7 @@ public class UserController {
 
     @GetMapping("/signup")
     public String submitForm(@ModelAttribute("user") User user) {
-        //userServices.createUser(user);
+        userServices.createUser(user);
         return "signup";
     }
 

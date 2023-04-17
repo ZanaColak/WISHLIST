@@ -1,14 +1,12 @@
 package com.example.wishlist.controller;
 
 import com.example.wishlist.model.Item;
-import com.example.wishlist.model.Wishlist;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import com.example.wishlist.services.ItemServices;
+
+import java.util.List;
 
 @Controller
 @RequestMapping
@@ -20,11 +18,14 @@ public class ItemController {
     public ItemController(ItemServices itemServices) {
         this.itemServices = itemServices;
     }
-    @PostMapping("user/product/save") //Virker ikke/ i tvivl om det skal være en item den gemmer eller en wishlist
-    public String saveProduct(Item item){
+    @PostMapping("user/product/save")
+    public String saveProduct(@ModelAttribute Item item, Model model) {
         itemServices.addItem(item);
-        return "item_form";
-    }
+        List<Item> itemList = itemServices.getItemList(item.getID());
+            model.addAttribute("item", itemList);
+            return "item_form";
+        }
+
     @GetMapping("user/wishlist/item")
     public String productList(Item item){
         itemServices.getItemList(item.getWishlistID());
@@ -37,16 +38,16 @@ public class ItemController {
         return "wishList";
     }
 
-/*     @GetMapping("/user/item/update")//Find by id (Not done yet)
-    public String updateItem(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("wishlist", item);
-        return "wishList";
-    }*/
 
     @GetMapping("/user/item/update")//Find by id (Not done yet)
     public String updateItem(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("wishlist", item);
         return "wishList";
     }
-
 }
+/*     @GetMapping("/user/item/update")//Find by id (Not done yet)
+    public String updateItem(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("wishlist", item);
+        return "wishList";
+    }*/
+

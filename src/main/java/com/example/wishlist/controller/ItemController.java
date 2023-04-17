@@ -22,7 +22,7 @@ public class ItemController {
     }
     @PostMapping("user/product/save") //Virker ikke/ i tvivl om det skal være en item den gemmer eller en wishlist
     public String saveProduct(Item item){
-        itemServices.addItem(item.getID(), item.getName(), item.getWishlistID());
+        itemServices.addItem(item);
         return "item_form";
     }
     @GetMapping("list")
@@ -36,9 +36,16 @@ public class ItemController {
         model.addAttribute("wishlist", item);
         return "wishList";
     }
-     @GetMapping("/user/item/update")//Find by id (Not done yet)
+/*     @GetMapping("/user/item/update")//Find by id (Not done yet)
+    public String updateItem(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("wishlist", item);
+        return "wishList";
+    }*/
+
+    @GetMapping("/user/item/update")//Find by id (Not done yet)
     public String updateItem(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("wishlist", item);
         return "wishList";
     }
+
 }

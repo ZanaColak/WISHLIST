@@ -27,8 +27,8 @@ public class UserServices {
         userRepository.addUser(ID, name, password, email);
     }*/
 
-    public void addUser(User user) {
-        userRepository.addUser(user);
+    public void createUser(User user) {
+        userRepository.createUser(user);
     }
 
     public void editUser(int ID, String name, String password, String email) {

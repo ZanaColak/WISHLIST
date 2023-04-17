@@ -4,10 +4,7 @@ import com.example.wishlist.model.Wishlist;
 import com.example.wishlist.services.WishlistServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping
@@ -26,19 +23,19 @@ public class WishlistController {
     }
 
 
-   // @PostMapping("user/product/save") //Virker ikke/ i tvivl om det skal være en item den gemmer eller en wishlist
-   // public String saveProduct(Wishlist wishlist){
-       // wishlistServices.addWishlist(wishlist.getID(), wishlist.getName(), wishlist.getUserID());
-        //return "redirect:/wishList";
-    //}
+   @PostMapping("user/item_form") //Virker ikke/ i tvivl om det skal være en item den gemmer eller en wishlist
+   public String createWishlist(Wishlist wishlist){
+        wishlistServices.createWishlist(wishlist);
+        return "redirect:/wishList";
+    }
 
-    /*@GetMapping("")//Find by id (Not done yet)
-    public String editWishlist(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("wishlist", wishlist);
+    @GetMapping("")//Find by id (Not done yet)
+    public String updateWishlist(@ModelAttribute("user") Wishlist wishlist, String name) {
+        wishlistServices.updateWishlist(wishlist, name);
         return "item_form";
     }
 
-    @GetMapping("")
+    /*@GetMapping("")
     public String deleteWish(@PathVariable("id") Integer id, Model model) {
         //Delete wish ved at indtaste brugerens id (not done yet)
         model.addAttribute("wishlist", wishlist);

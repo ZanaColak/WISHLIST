@@ -31,7 +31,7 @@ public class UserController {
         System.out.println(user.getPassword());
         System.out.println(user.getId());
 
-        //userServices.addUser(user);
+        //userServices.createUser(user);
         return "signup";
     }
 

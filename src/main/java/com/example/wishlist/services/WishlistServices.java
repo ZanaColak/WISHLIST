@@ -23,12 +23,16 @@ public class WishlistServices {
         return wishlistRepository.fetchWishlist(wishlistID);
     }
 
-    public void addWishlist(int ID, String name, int userID) {
+/*    public void addWishlist(int ID, String name, int userID) {
         wishlistRepository.addWishlist(ID, name, userID);
+    }*/
+
+    public void createWishlist(Wishlist wishlist) {
+        wishlistRepository.createWishlist(wishlist);
     }
 
-    public void updateWishlist(int ID, String name, int userID) {
-        wishlistRepository.updateWishlist(ID, name, userID);
+    public void updateWishlist(Wishlist wishlist, String name) {
+        wishlistRepository.updateWishlist(wishlist, name);
     }
 
     public void deleteWishlist(int ID) {

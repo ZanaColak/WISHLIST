@@ -56,13 +56,13 @@ public class ItemRepository {
     }
 
 
-    public void addItem(int ID, String name, int wishlistID){
+    public void addItem(Item item){
         try(Connection con = DBManager.getConnection()) {
             String SQL = "INSERT INTO item(itemID, itemName, wishlistID) VALUES(?, ?, ?)";
             PreparedStatement pstmt = con.prepareStatement(SQL);
-            pstmt.setInt(1, ID);
-            pstmt.setString(2, name);
-            pstmt.setInt(3, wishlistID);
+            pstmt.setInt(1, item.getID());
+            pstmt.setString(2, item.getName());
+            pstmt.setInt(3, item.getWishlistID());
             pstmt.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -72,16 +72,12 @@ public class ItemRepository {
 
     public void updateItem(int ID, String name, int wishlistID) {
         try(Connection con = DBManager.getConnection()) {
-            String SQL = "UPDATE item SET itemName = ?, wishlistID = ? WHERE itemID = ?;";
+            String SQL = "UPDATE item SET itemName = ? WHERE wishlistID = ? AND itemID = ?;";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             pstmt.setString(1, name);
             pstmt.setInt(2, wishlistID);
             pstmt.setInt(3, ID);
             pstmt.executeUpdate();
-
-            Item item = fetchItem(ID);
-            item.setName(name);
-            item.setID(ID);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

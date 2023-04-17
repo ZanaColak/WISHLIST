@@ -56,7 +56,7 @@ public class WishlistRepository {
     }
 
 
-    public void addWishlist(int ID, String name, int userID){
+/*    public void addWishlist(int ID, String name, int userID){
         try(Connection con = DBManager.getConnection()) {
             String SQL = "INSERT INTO wishlist(wishlistID, wishlistName, userID) VALUES(?, ?, ?)";
             PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -67,21 +67,29 @@ public class WishlistRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }*/
+
+    public void createWishlist(Wishlist wishlist){
+        try(Connection con = DBManager.getConnection()) {
+            String SQL = "INSERT INTO wishlist(wishlistID, wishlistName, userID) VALUES(?, ?, ?)";
+            PreparedStatement pstmt = con.prepareStatement(SQL);
+            pstmt.setInt(1, wishlist.getID());
+            pstmt.setString(2, wishlist.getName());
+            pstmt.setInt(3, wishlist.getUserID());
+            pstmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-
-    public void updateWishlist(int ID, String name, int userID) {
+    public void updateWishlist(Wishlist wishlist, String name) {
         try(Connection con = DBManager.getConnection()) {
-            String SQL = "UPDATE wishlist SET wishlistName = ?, userID = ? WHERE wishlistID = ?;";
+            String SQL = "UPDATE wishlist SET wishlistName = ?, WHERE userID = ? AND wishlistID = ?;";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             pstmt.setString(1, name);
-            pstmt.setInt(2, userID);
-            pstmt.setInt(3, ID);
+            pstmt.setInt(2, wishlist.getUserID());
+            pstmt.setInt(3, wishlist.getID());
             pstmt.executeUpdate();
-
-            Wishlist wishlist = fetchWishlist(ID);
-            wishlist.setName(name);
-            wishlist.setUserID(userID);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

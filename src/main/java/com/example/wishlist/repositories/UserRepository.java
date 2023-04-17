@@ -66,7 +66,7 @@ public class UserRepository {
         }
     }*/
 
-    public void addUser(User user){
+    public void createUser(User user){
         try(Connection con = DBManager.getConnection()) {
             String SQL = "INSERT INTO user(userID, username, password, email) VALUES(?, ?, ?, ?)";
             PreparedStatement pstmt = con.prepareStatement(SQL);

@@ -23,8 +23,8 @@ public class ItemServices {
         return itemRepository.fetchItem(ID);
     }
 
-    public void addItem(int ID, String name, int wishlistID) {
-        itemRepository.addItem(ID, name, wishlistID);
+    public void addItem(Item item) {
+        itemRepository.addItem(item);
     }
 
     public void updateItem(int ID, String name, int wishlistID) {
